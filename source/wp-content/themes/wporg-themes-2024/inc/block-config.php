@@ -6,7 +6,8 @@
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Block_Config;
 
 use WP_HTML_Tag_Processor, WP_Block_Supports;
-use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_query_tags, get_tag_labels, wporg_themes_get_feature_list };
+use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_query_tags, wporg_themes_get_feature_list };
+use function WordPressdotorg\Theme\Theme_Directory_2024\SEO_Social_Meta\{get_archive_title};
 
 add_filter( 'wporg_query_total_label', __NAMESPACE__ . '\update_query_total_label', 10, 2 );
 add_filter( 'wporg_query_filter_options_layouts', __NAMESPACE__ . '\get_layouts_options' );
@@ -305,39 +306,20 @@ function update_archive_title( $block_content, $block, $instance ) {
 			return '';
 		}
 
-		$author = isset( $wp_query->query['author_name'] ) ? get_user_by( 'slug', $wp_query->query['author_name'] ) : false;
 		$current_browse = $wp_query->query['browse'] ?? false;
-		$tags = get_query_tags();
 
 		if ( is_front_page() && ! $current_browse && ! is_paged() ) {
 			return '';
 		}
 
-		if ( $author ) {
-			// translators: %s Author name.
-			$title = sprintf( __( 'Author: %s', 'wporg-themes' ), $author->display_name );
+		$title = get_archive_title();
 
+		$author = isset( $wp_query->query['author_name'] ) ? get_user_by( 'slug', $wp_query->query['author_name'] ) : false;
+		if ( $author ) {
 			// Unhide this block on author archives.
 			if ( isset( $block['attrs']['className'] ) ) {
 				$block['attrs']['className'] = str_replace( 'screen-reader-text', '', $block['attrs']['className'] );
 			}
-		} else if ( is_search() ) {
-			$title = __( 'Search results', 'wporg-themes' );
-		} else if ( ! empty( $tags ) ) {
-			$labels = get_tag_labels( $tags );
-			$title = wp_sprintf_l( '%l', $labels );
-		} else if ( 'community' === $current_browse ) {
-			$title = __( 'Community themes', 'wporg-themes' );
-		} else if ( 'commercial' === $current_browse ) {
-			$title = __( 'Commercial themes', 'wporg-themes' );
-		} else if ( 'new' === $current_browse ) {
-			$title = __( 'Latest themes', 'wporg-themes' );
-		} else if ( 'updated' === $current_browse ) {
-			$title = __( 'Recently updated themes', 'wporg-themes' );
-		} else if ( 'favorites' === $current_browse ) {
-			$title = __( 'My favorites', 'wporg-themes' );
-		} else {
-			$title = __( 'All themes', 'wporg-themes' );
 		}
 
 		$tag_name           = isset( $attributes['level'] ) ? 'h' . (int) $attributes['level'] : 'h1';

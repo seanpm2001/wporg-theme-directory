@@ -9,6 +9,7 @@ require_once( __DIR__ . '/inc/block-config.php' );
 require_once( __DIR__ . '/inc/embed.php' );
 require_once( __DIR__ . '/inc/i18n.php' );
 require_once( __DIR__ . '/inc/rest-api.php' );
+require_once( __DIR__ . '/inc/seo-social-meta.php' );
 
 // Block files
 require_once( __DIR__ . '/src/business-model-notice/index.php' );
@@ -69,6 +70,9 @@ add_action(
 
 		// Remove the "By…" from the author name block.
 		remove_filter( 'render_block_core/post-author-name', 'WordPressdotorg\Theme\Parent_2021\Gutenberg_Tweaks\render_author_prefix', 10, 2 );
+
+		// Re-enable pagination meta tags.
+		remove_filter( 'wporg_rel_next_pages', '__return_zero' );
 	}
 );
 
