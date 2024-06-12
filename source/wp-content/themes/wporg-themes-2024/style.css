@@ -37,6 +37,19 @@
 	border-color: var(--wp--preset--color--charcoal-1) !important;
 }
 
+/* Add external icon to titles on commercial page. */
+.is-commercial-loop .wp-block-wporg-link-wrapper .wp-block-post-title::after {
+	content: "";
+	display: inline-flex;
+	background-color: currentColor;
+	width: 0.65em;
+	height: 0.65em;
+	margin-left: 0.25em;
+	vertical-align: baseline;
+	mask-image: url(../wporg-parent-2021/images/external-link-icon.svg);
+	mask-size: cover;
+}
+
 /* Hover state for variation and pattern screenshots should match above. */
 .wp-block-wporg-screenshot-preview:where(.is-linked-image):hover {
 	border-color: var(--wp--preset--color--charcoal-1);
