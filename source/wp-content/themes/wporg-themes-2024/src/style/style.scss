@@ -1,0 +1,104 @@
+/*
+ * Note: only add styles here in cases where you can't achieve the style with
+ * templates or theme.json settings.
+ */
+
+.wp-block-query-pagination.wp-block-query-pagination {
+	margin-bottom: 0;
+}
+
+/* Add default focus style. */
+:where(main) a:where(:not(.wp-element-button,.wp-block-wporg-link-wrapper)):focus,
+:where(main) button:where(:not([class*="wp-block-button"])):focus {
+	outline: none;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
+}
+
+/* Keep the border radius on grid items focus. */
+.wp-block-wporg-link-wrapper:focus-visible {
+	border-radius: 2px;
+}
+
+/* Add hover state to the grid items. */
+.wp-block-wporg-link-wrapper:hover .has-border-color {
+	border-color: var(--wp--preset--color--charcoal-1) !important;
+}
+
+/* Add external icon to titles on commercial page. */
+.is-commercial-loop .wp-block-wporg-link-wrapper .wp-block-post-title::after {
+	content: "";
+	display: inline-flex;
+	background-color: currentColor;
+	width: 0.65em;
+	height: 0.65em;
+	margin-left: 0.25em;
+	vertical-align: baseline;
+	mask-image: url(../../../wporg-parent-2021/images/external-link-icon.svg);
+	mask-size: cover;
+}
+
+/* Add an aspect-ratio to prevent layout shift. */
+.wp-block-query .wp-block-post-featured-image {
+	aspect-ratio: 4/3;
+}
+
+/* Blocks with a border radius should hide overflow to prevent images from breaking out. */
+.wp-block-group[style*="border-radius"] {
+	overflow: hidden;
+}
+
+/* Hide the total count on the homepage */
+body.browse-popular:not(.paged) .wp-block-wporg-query-total {
+	display: none;
+}
+
+/* Both blocks are in the local header, but only one should be shown at any given time. */
+body.blog .wp-block-wporg-local-navigation-bar .wp-block-post-title,
+body.archive .wp-block-wporg-local-navigation-bar .wp-block-post-title,
+body.search .wp-block-wporg-local-navigation-bar .wp-block-post-title {
+	display: none;
+}
+
+body.single .wp-block-wporg-local-navigation-bar .wp-block-query-title,
+body.page .wp-block-wporg-local-navigation-bar .wp-block-query-title {
+	display: none;
+}
+
+/* The query filter title is visible on author pages, so reducde the spacing above for balance. */
+body.author h1.wp-block-query-title {
+	margin-top: -30px !important;
+}
+
+/* Ensure download buttons take up the max space allowed. */
+.wporg-theme-actions > .wp-block-button {
+	flex-grow: 1;
+
+	a {
+		width: 100%;
+	}
+}
+
+
+@media (max-width: 1080px) {
+
+	/* Drop to a two column layout for grids. */
+	.wp-block-post-template.is-layout-grid.columns-3 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	/* Drop the screenshot/meta section to one-column. */
+	body.single-repopackage .wporg-theme-overview {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 781px) {
+
+	/* Update the screenshot/meta section to use `row` again
+	 * so the core block CSS applies correctly. */
+
+	body.single-repopackage .wporg-theme-overview {
+		flex-direction: row;
+	}
+}
