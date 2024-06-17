@@ -24,17 +24,11 @@ function init() {
 /**
  * Convert a style object into a screenshot preview block.
  */
-function get_style_variation_card( $style ) {
-	$preview_link = $style->preview_base;
-	if ( str_contains( $style->link, 'style_variation' ) ) {
-		$preview_link = add_query_arg( 'style_variation', $style->title, $style->preview_base );
-	}
-
+function get_style_variation_card( $style, $is_selected = false ) {
 	$args = array(
 		'src' => $style->preview_link,
 		// translators: %s pattern name.
 		'alt' => sprintf( __( 'Style: %s', 'wporg-themes' ), $style->title ),
-		'href' => $preview_link,
 		'width' => 100,
 		'viewportWidth' => 1180,
 		'viewportHeight' => 740,
@@ -42,9 +36,16 @@ function get_style_variation_card( $style ) {
 	);
 	$block_markup = do_blocks( sprintf( '<!-- wp:wporg/screenshot-preview %s /-->', wp_json_encode( $args ) ) );
 
-	$html = new WP_HTML_Tag_Processor( $block_markup );
-	$html->next_tag( 'a' );
-	$html->set_attribute( 'data-wp-on--click', 'wporg/themes/preview::actions.setIframeUrl' );
+	$instance_id = wp_unique_id( 'wporg-theme-style-var-item-' );
 
-	return $html->get_updated_html();
+	$extra_attrs = '';
+	$extra_attrs .= $is_selected ? ' aria-selected="true"' : '';
+
+	return sprintf(
+		'<li role="option" id="%1$s" data-style_variation="%2$s" %3$s>%4$s</li>',
+		$instance_id,
+		$style->title,
+		$extra_attrs,
+		$block_markup
+	);
 }

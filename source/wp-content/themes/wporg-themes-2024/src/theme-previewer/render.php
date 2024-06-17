@@ -7,6 +7,9 @@ if ( ! $current_post_id ) {
 	return;
 }
 
+// Manually enqueue this script, so that it's available for the interactivity view script.
+wp_enqueue_script( 'wp-a11y' );
+
 $theme_post = get_post( $block->context['postId'] );
 $theme = wporg_themes_theme_information( $theme_post->post_name );
 
@@ -49,6 +52,9 @@ $init_state = [
 	'permalink' => $permalink,
 	'previewBase' => $theme->preview_url,
 	'selected' => $selected,
+	'label' => array(
+		'postNavigate' => __( 'Theme preview frame updated.', 'wporg-themes' ),
+	),
 ];
 $encoded_state = wp_json_encode( $init_state );
 
@@ -69,22 +75,9 @@ $markup = <<<BLOCKS
 BLOCKS;
 
 $html = new WP_HTML_Tag_Processor( $content );
-while ( $html->next_tag( [ 'class_name' => 'wp-block-wporg-screenshot-preview' ] ) ) {
-	$html->next_tag( 'a' );
-	$preview_link = $html->get_attribute( 'href' );
-	if ( $preview_link ) {
-		$query = wp_parse_url( $preview_link, PHP_URL_QUERY );
-		$args = wp_parse_args( $query );
-		// If neither style or pattern is found, this is the default style variation.
-		if ( empty( $args ) ) {
-			$args['style_variation'] = 'default';
-		}
-		foreach ( $args as $key => $value ) {
-			$html->set_attribute( 'data-' . esc_attr( $key ), esc_attr( $value ) );
-		}
-
-		$html->set_attribute( 'data-wp-on--click', 'wporg/themes/preview::actions.navigateIframe' );
-	}
+while ( $html->next_tag( [ 'class_name' => 'wporg-theme-listbox' ] ) ) {
+	$html->set_attribute( 'data-wp-on--wporg-select', 'wporg/themes/preview::actions.navigateIframe' );
+	$html->set_attribute( 'data-wp-on--wporg-unselect', 'wporg/themes/preview::actions.navigateIframe' );
 }
 
 $content = $html->get_updated_html();

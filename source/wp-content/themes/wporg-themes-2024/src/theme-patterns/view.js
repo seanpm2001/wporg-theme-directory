@@ -1,38 +1,34 @@
 /**
  * WordPress dependencies
  */
-import { getContext, getElement, store } from '@wordpress/interactivity';
+import { addQueryArgs } from '@wordpress/url';
 
-store( 'wporg/themes/theme-patterns', {
-	state: {
-		get buttonCSS() {
-			return getContext().hideOverflow ? false : 'none';
-		},
-	},
-	actions: {
-		showAll() {
-			const context = getContext();
-			const { ref } = getElement();
-			context.hideOverflow = false;
+/**
+ * Internal dependencies
+ */
+import wporgListbox from '../utils/listbox';
 
-			const container = ref.closest( '.wp-block-wporg-theme-patterns' );
-			if ( ! container ) {
-				return;
-			}
+window.addEventListener( 'load', () => {
+	const containers = document.querySelectorAll( '.wp-block-wporg-theme-patterns' );
+	if ( ! containers ) {
+		return;
+	}
 
-			// Trigger the custom "show" event on each image.
-			container.querySelectorAll( '.wp-block-wporg-screenshot-preview' ).forEach( ( element ) => {
-				const event = new Event( 'wporg-show' );
-				element.dispatchEvent( event );
-			} );
+	containers.forEach( ( container ) => {
+		const state = JSON.parse( container.dataset.initialState );
+		new wporgListbox( container, state );
 
-			// Move focus from the now-removed button to the first-visible element.
-			setTimeout( () => {
-				const firstNewElement = container.querySelectorAll( 'a' )[ context.initialCount ];
-				if ( firstNewElement ) {
-					firstNewElement.focus();
+		// Not in the previewer, use the select event to navigate to the previewer.
+		if ( ! container.closest( '.wp-block-wporg-theme-previewer' ) ) {
+			container.querySelector( '[role="listbox"]' ).addEventListener( 'wporg-select', ( event ) => {
+				const ref = event.selectedElement;
+				if ( ref && ref.dataset ) {
+					let url = window.location.toString();
+					url = url.replace( /\/$/, '' ) + '/preview/';
+					url = addQueryArgs( url, { pattern_name: ref.dataset.pattern_name } );
+					window.location = url;
 				}
-			}, 0 );
-		},
-	},
+			} );
+		}
+	} );
 } );
