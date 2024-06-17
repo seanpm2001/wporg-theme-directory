@@ -6,6 +6,7 @@
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Block_Config;
 
 use WP_HTML_Tag_Processor, WP_Block_Supports;
+use const WordPressdotorg\Theme\Theme_Directory_2024\THEME_POST_TYPE;
 use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_query_tags, wporg_themes_get_feature_list };
 use function WordPressdotorg\Theme\Theme_Directory_2024\SEO_Social_Meta\{get_archive_title};
 
@@ -19,6 +20,7 @@ add_filter( 'render_block_wporg/link-wrapper', __NAMESPACE__ . '\inject_permalin
 add_filter( 'render_block_wporg/language-suggest', __NAMESPACE__ . '\inject_language_suggest_endpoint' );
 add_filter( 'render_block_core/search', __NAMESPACE__ . '\inject_browse_search_block' );
 add_filter( 'render_block_core/query-title', __NAMESPACE__ . '\update_archive_title', 10, 3 );
+add_filter( 'render_block_wporg/language-suggest', __NAMESPACE__ . '\filter_language_suggest_block' );
 
 /**
  * Update the query total label to reflect "patterns" found.
@@ -338,5 +340,22 @@ function update_archive_title( $block_content, $block, $instance ) {
 			$title
 		);
 	}
+	return $block_content;
+}
+
+/**
+ * Increase the visibility of the language suggest bar on single themes.
+ *
+ * @param string $block_content
+ * @return string
+ */
+function filter_language_suggest_block( $block_content ) {
+	if ( is_singular( THEME_POST_TYPE ) ) {
+		$html = new \WP_HTML_Tag_Processor( $block_content );
+		$html->next_tag();
+		$html->add_class( 'is-style-prominent' );
+		$block_content = $html->get_updated_html();
+	}
+
 	return $block_content;
 }
