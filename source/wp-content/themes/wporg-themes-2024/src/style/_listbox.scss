@@ -24,12 +24,6 @@
 .wporg-theme-listbox .wp-block-wporg-screenshot-preview {
 	position: relative;
 	border: none;
-	transition: all 0.2s ease;
-
-	@media (prefers-reduced-motion: reduce) {
-		transition-duration: 0s;
-		transition-delay: 0s;
-	}
 
 	&::after {
 		content: "";
@@ -40,6 +34,12 @@
 		border-style: solid;
 		border-width: 1px;
 		border-radius: 4px;
+		transition: all 0.2s ease;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition-duration: 0s;
+			transition-delay: 0s;
+		}
 	}
 
 	&:hover {
