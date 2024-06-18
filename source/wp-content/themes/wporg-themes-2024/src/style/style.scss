@@ -14,7 +14,7 @@
 :where(main) button:where(:not([class*="wp-block-button"])):focus {
 	outline: none;
 	border-radius: 2px;
-	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
+	box-shadow: 0 0 0 1.5px currentColor;
 }
 
 /* Keep the border radius on grid items focus. */
