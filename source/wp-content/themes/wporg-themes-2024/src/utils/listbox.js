@@ -8,7 +8,7 @@ class wporgListbox {
 	constructor( container, state ) {
 		this.state = state;
 		this.container = container;
-		this.selected = state.initialSelected > 0 ? state.initialSelected : null;
+		this.selected = state.initialSelected >= 0 ? state.initialSelected : null;
 		this.current = null;
 
 		const button = container.querySelector( 'button' );

@@ -16,7 +16,7 @@ if ( ! $count ) {
 	return '';
 }
 
-$selected_index = -1;
+$selected_index = 0;
 if ( isset( $_GET['style_variation'] ) ) {
 	foreach ( $styles as $i => $style ) {
 		if ( $style->title === $_GET['style_variation'] ) {
