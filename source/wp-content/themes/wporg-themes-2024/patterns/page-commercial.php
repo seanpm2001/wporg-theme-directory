@@ -6,8 +6,8 @@
  */
 
 ?>
-<!-- wp:group -->
-<div class="wp-block-group">
+<!-- wp:group {"align":"wide","layout":{"type":"constrained","justifyContent":"left"}} -->
+<div class="wp-block-group alignwide">
 	<!-- wp:heading {"level":1,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
 	<h1 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( 'Commercially supported GPL themes', 'wporg-themes' ); ?></h1>
 	<!-- /wp:heading -->
@@ -69,8 +69,8 @@
 </div>
 <!-- /wp:query -->
 
-<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"default"}} -->
-<div id="theme-requirements" class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50);">
+<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"align":"wide","layout":{"type":"constrained","justifyContent":"left"}} -->
+<div id="theme-requirements" class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--50);">
 	<!-- wp:paragraph -->
 	<p><?php esc_html_e( 'If you would like to be included in this list please send your info to themes at wordpress dot org. To be included, you should:', 'wporg-themes' ); ?></p>
 	<!-- /wp:paragraph -->
