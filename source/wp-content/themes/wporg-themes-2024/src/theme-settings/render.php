@@ -58,7 +58,7 @@ $encoded_state = wp_json_encode( $init_state );
 	data-wp-interactive="wporg/themes/theme-settings"
 	data-wp-context="<?php echo esc_attr( $encoded_state ); ?>"
 >
-	<h2 class="has-heading-4-font-size"><?php echo esc_html( $labels['heading'] ); ?></h2>
+	<h2><?php echo esc_html( $labels['heading'] ); ?></h2>
 	<p class="wporg-theme-settings__description">
 		<strong><?php echo esc_html( $labels['type'] ); ?></strong>
 		<?php echo esc_html( $labels['description'] ); ?>

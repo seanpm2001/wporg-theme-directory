@@ -45,7 +45,7 @@ $encoded_state = wp_json_encode( $init_state );
 	<?php echo get_block_wrapper_attributes(); // phpcs:ignore ?>
 	data-initial-state="<?php echo esc_attr( $encoded_state ); ?>"
 >
-	<h2 id="wporg-theme-patterns-heading" class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Patterns', 'wporg-themes' ); ?></h2>
+	<h2 id="wporg-theme-patterns-heading" class="wp-block-heading"><?php esc_html_e( 'Patterns', 'wporg-themes' ); ?></h2>
 
 	<ul
 		tabindex="0"

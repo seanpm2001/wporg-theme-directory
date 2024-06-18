@@ -64,14 +64,14 @@
 
 <!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|40"}}}} -->
 <div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--40)">
-	<!-- wp:column {"width":"70%","style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
+	<!-- wp:column {"width":"70%","style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
 	<div class="wp-block-column" style="flex-basis:70%">
 		<!-- wp:post-content /-->
 
 		<!-- wp:group -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"fontSize":"heading-4"} -->
-			<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Features', 'wporg-themes' ); ?></h2>
+			<!-- wp:heading -->
+			<h2 class="wp-block-heading"><?php esc_html_e( 'Features', 'wporg-themes' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:post-terms {"term":"post_tag"} /-->
@@ -82,8 +82,8 @@
 
 		<!-- wp:group -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"fontSize":"heading-4"} -->
-			<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Downloads per day', 'wporg-themes' ); ?></h2>
+			<!-- wp:heading -->
+			<h2 class="wp-block-heading"><?php esc_html_e( 'Downloads per day', 'wporg-themes' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"active-installs"}}}}} -->
@@ -102,8 +102,8 @@
 	<div class="wp-block-column has-small-font-size" style="flex-basis:30%">
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"fontSize":"heading-4"} -->
-			<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Ratings', 'wporg-themes' ); ?></h2>
+			<!-- wp:heading {"fontSize":"large"} -->
+			<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Ratings', 'wporg-themes' ); ?></h2>
 			<!-- /wp:heading -->
 
 		</div>
@@ -125,8 +125,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Support', 'wporg-themes' ); ?></h2>
+		<!-- wp:heading {"fontSize":"large"} -->
+		<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Support', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph -->
@@ -137,8 +137,8 @@
 		<p style="margin-top:var(--wp--preset--spacing--10)">View support forum</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Report', 'wporg-themes' ); ?></h2>
+		<!-- wp:heading {"fontSize":"large"} -->
+		<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Report', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph -->
@@ -149,8 +149,8 @@
 		<p style="margin-top:var(--wp--preset--spacing--10)">Report this theme</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Translations', 'wporg-themes' ); ?></h2>
+		<!-- wp:heading {"fontSize":"large"} -->
+		<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Translations', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:wporg/theme-available-translations /-->
@@ -159,8 +159,8 @@
 		<p>Translate this theme</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Browse the code', 'wporg-themes' ); ?></h2>
+		<!-- wp:heading {"fontSize":"large"} -->
+		<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Browse the code', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
