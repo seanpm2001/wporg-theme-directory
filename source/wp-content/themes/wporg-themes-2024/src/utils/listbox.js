@@ -36,7 +36,7 @@ class wporgListbox {
 		}
 
 		// Focus the container.
-		element.closest( 'ul' ).focus();
+		element.closest( 'ul' ).focus( { preventScroll: true } );
 
 		this.current = element.dataset.index * 1;
 
