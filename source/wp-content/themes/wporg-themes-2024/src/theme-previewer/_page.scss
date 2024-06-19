@@ -9,7 +9,8 @@
 		> .wp-block-column {
 			display: flex;
 			flex-direction: column;
-			overflow: auto;
+			overflow-x: hidden;
+			overflow-y: auto;
 
 			&.has-charcoal-1-background-color {
 
@@ -34,6 +35,10 @@
 			font-size: var(--wp--preset--font-size--heading-5);
 			line-height: var(--wp--custom--heading--level-5--typography--line-height);
 		}
+	}
+
+	.wporg-theme-style-variations__grid {
+		--wporg-theme-style-variations--size: 115px;
 	}
 
 	@media (max-width: 781px) {
