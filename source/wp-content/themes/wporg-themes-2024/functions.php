@@ -310,6 +310,9 @@ function redirect_term_archives() {
 	} else if ( count( $terms ) && ! str_starts_with( $wp->request, 'tags/' ) ) {
 		if ( count( $terms ) === 1 ) {
 			$url = get_term_link( $terms[0], 'post_tag' );
+			if ( is_wp_error( $url ) ) {
+				$url = home_url( '/' );
+			}
 		} else {
 			$path = 'tags/' . implode( '+', $terms ) . '/';
 			$url = home_url( $path );
