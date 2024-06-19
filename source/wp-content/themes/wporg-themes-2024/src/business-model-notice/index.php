@@ -72,7 +72,7 @@ function render( $attributes, $content, $block ) {
 	$markup .= '<!-- wp:paragraph --><p>';
 	$markup .= esc_html( $content );
 	if ( $url ) {
-		$markup .= '<br /><a href="' . esc_url( $url ) . '" class="external-link">' . esc_html( $link_text ) . '</a>'; //nofollow
+		$markup .= ' <a href="' . esc_url( $url ) . '" class="external-link">' . esc_html( $link_text ) . '</a>'; //nofollow
 	}
 	$markup .= '</p><!-- /wp:paragraph -->';
 
