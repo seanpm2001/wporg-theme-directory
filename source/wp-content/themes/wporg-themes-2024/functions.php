@@ -587,6 +587,11 @@ function get_theme_patterns( $theme_name ) {
 		// The first decode parses out to JSON, the second parses out to an object.
 		$patterns = json_decode( json_decode( wp_remote_retrieve_body( $response ) ) );
 
+		// If the response is not an error but invalid, transform into something that will not error.
+		if ( empty( $patterns ) ) {
+			$patterns = [];
+		}
+
 		set_transient( $cache_key, $patterns, HOUR_IN_SECONDS );
 	}
 
@@ -613,6 +618,11 @@ function get_theme_style_variations( $theme_name ) {
 		// This is decoded twice because the response is a quoted JSON string.
 		// The first decode parses out to JSON, the second parses out to an object.
 		$styles = json_decode( json_decode( wp_remote_retrieve_body( $response ) ) );
+
+		// If the response is not an error but invalid, transform into something that will not error.
+		if ( empty( $styles ) ) {
+			$styles = [];
+		}
 
 		set_transient( $cache_key, $styles, HOUR_IN_SECONDS );
 	}
