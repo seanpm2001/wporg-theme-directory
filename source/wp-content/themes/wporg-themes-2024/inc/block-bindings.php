@@ -81,11 +81,11 @@ function get_meta_block_value( $args, $block ) {
 				__( 'See all<span class="screen-reader-text"> reviews</span>', 'wporg-themes' )
 			);
 		case 'support-forum-url':
-			return esc_url( get_support_url( $theme->slug ) );
+			return esc_url( get_support_url( $theme->slug . '/' ) );
 		case 'support-forum-link':
 			return sprintf(
 				'<a href="%s">%s</a>',
-				esc_url( get_support_url( $theme->slug ) ),
+				esc_url( get_support_url( $theme->slug . '/' ) ),
 				__( 'View support forum', 'wporg-themes' )
 			);
 		case 'submit-review-url':
