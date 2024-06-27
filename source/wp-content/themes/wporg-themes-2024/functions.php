@@ -407,6 +407,8 @@ function get_query_tags() {
 		$tags = explode( '+', $tags );
 	}
 	$tags_and = isset( $wp_query->query['tag_slug__and'] ) ? (array) $wp_query->query['tag_slug__and'] : array();
+	// Filter out arrays in the array.
+	$tags_and = array_filter( $tags_and, 'is_scalar' );
 
 	return array_merge( $tags, $tags_and );
 }
