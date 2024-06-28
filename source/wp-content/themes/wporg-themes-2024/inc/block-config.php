@@ -193,17 +193,17 @@ function add_site_navigation_menus( $menus ) {
 	$menu = array();
 
 	$menu[] = array(
-		'label' => __( 'My favorites', 'wporg-themes' ),
-		'url' => '/browse/favorites/',
-		'className' => 'favorites' === $current_browse ? 'current-menu-item' : '',
-	);
-	$menu[] = array(
 		'label' => __( 'Submit a theme', 'wporg-themes' ),
 		'url' => '/getting-started/',
 	);
 	$menu[] = array(
 		'label' => __( 'Commercial theme companies', 'wporg-themes' ),
 		'url' => '/commercial/',
+	);
+	$menu[] = array(
+		'label' => __( 'My favorites', 'wporg-themes' ),
+		'url' => '/browse/favorites/',
+		'className' => ( 'favorites' === $current_browse ? 'current-menu-item ' : '' ) . 'has-separator',
 	);
 
 	$browse_menu = array(
