@@ -95,6 +95,7 @@
 		<!-- /wp:group -->
 
 		<!-- wp:wporg/theme-settings /-->
+		<!-- wp:wporg/theme-previewer-settings /-->
 	</div>
 	<!-- /wp:column -->
 

@@ -10,12 +10,30 @@ if ( ! $current_post_id ) {
 // Manually enqueue this script, so that it's available for the interactivity view script.
 wp_enqueue_script( 'wp-a11y' );
 
+$is_playground = (bool) ( $_REQUEST['playground-preview'] ?? false );
+
 $theme_post = get_post( $block->context['postId'] );
 $theme = wporg_themes_theme_information( $theme_post->post_name );
 
 $url = $theme->preview_url ?? '';
 $permalink = get_permalink() . 'preview/';
 $selected = array();
+
+$blueprint = '';
+if ( $is_playground ) {
+	$permalink = add_query_arg( [ 'playground-preview' => 1 ], $permalink );
+	$blueprint = wp_json_encode(
+		rest_get_server()->response_to_data(
+			rest_do_request(
+				new WP_REST_Request(
+					'GET',
+					'/themes/v1/preview-blueprint/' . $theme->slug
+				)
+			),
+			false
+		)
+	);
+}
 
 // Switch to using the pattern URL if a pattern is requested.
 if ( isset( $_REQUEST['pattern_name'] ) ) {
@@ -43,12 +61,13 @@ if ( isset( $_REQUEST['style_variation'] ) ) {
 	}
 }
 
-$is_valid_url = $url && 'wp-themes.com' === wp_parse_url( $url, PHP_URL_HOST );
-
 // Initial state to pass to Interactivity API.
 $init_state = [
-	'isLoaded' => ! $is_valid_url,
+	'isLoaded' => ! $is_playground,
+	'isPlayground' => $is_playground,
+	'blueprint' => $blueprint,
 	'url' => $url,
+	'theme' => $theme_post->post_name,
 	'permalink' => $permalink,
 	'previewBase' => $theme->preview_url,
 	'selected' => $selected,

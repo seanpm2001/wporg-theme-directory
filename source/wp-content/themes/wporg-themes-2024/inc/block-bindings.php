@@ -69,7 +69,9 @@ function get_meta_block_value( $args, $block ) {
 				'<strong>' . $active_installs . '</strong>'
 			);
 		case 'preview-url':
-			return esc_url( untrailingslashit( get_permalink( $p ) ) . '/preview/' );
+			$playground = isset( $_REQUEST['playground-preview'] ) ? '?playground-preview=1' : '';
+
+			return esc_url( untrailingslashit( get_permalink( $p ) ) . '/preview/' . $playground );
 		case 'download-url':
 			return esc_url( $theme->download_link );
 		case 'download-text':
