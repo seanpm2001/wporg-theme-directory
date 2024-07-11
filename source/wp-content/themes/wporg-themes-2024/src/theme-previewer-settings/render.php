@@ -13,7 +13,7 @@ if (
 		empty( $_GET['playground-preview'] )
 	) || (
 		! current_user_can( 'edit_post', $theme_post->ID ) &&
-		get_current_user_id() !== $theme_post->post_author
+		get_current_user_id() != $theme_post->post_author // Note: Loose comparison; int != string.
 	)
 ) {
 	return;
