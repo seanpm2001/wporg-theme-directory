@@ -43,6 +43,12 @@ add_filter( 'post_type_link', __NAMESPACE__ . '\update_theme_shop_permalink', 10
 add_action( 'template_redirect', __NAMESPACE__ . '\redirect_term_archives' );
 add_filter( 'redirect_canonical', __NAMESPACE__ . '\strip_tag_query_string' );
 
+// Update the styles and patterns cache when themes are published/updated.
+add_action( 'publish_repopackage', __NAMESPACE__ . '\update_cached_style_variations', 100, 1 );
+add_action( 'publish_repopackage', __NAMESPACE__ . '\update_cached_theme_patterns', 100, 1 );
+add_action( 'wporg_themes_update_version_live', __NAMESPACE__ . '\update_cached_style_variations', 100, 1 );
+add_action( 'wporg_themes_update_version_live', __NAMESPACE__ . '\update_cached_theme_patterns', 100, 1 );
+
 // Remove filters added by plugin.
 remove_filter( 'post_thumbnail_html', 'wporg_themes_post_thumbnail_html', 10, 5 );
 
@@ -626,8 +632,6 @@ function update_cached_style_variations( $post_id ) {
 
 	return $styles;
 }
-add_action( 'publish_repopackage', 'update_cached_style_variations', 100, 1 );
-add_action( 'wporg_themes_update_version_live', 'update_cached_style_variations', 100, 1 );
 
 /**
  * Update the cached theme patterns for a theme.
@@ -664,5 +668,3 @@ function update_cached_theme_patterns( $post_id ) {
 
 	return $patterns;
 }
-add_action( 'publish_repopackage', 'update_cached_theme_patterns', 100, 1 );
-add_action( 'wporg_themes_update_version_live', 'update_cached_theme_patterns', 100, 1 );
