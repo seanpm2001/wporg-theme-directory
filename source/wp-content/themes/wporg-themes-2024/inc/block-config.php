@@ -22,6 +22,7 @@ add_filter( 'render_block_wporg/language-suggest', __NAMESPACE__ . '\inject_lang
 add_filter( 'render_block_core/search', __NAMESPACE__ . '\inject_browse_search_block' );
 add_filter( 'render_block_core/query-title', __NAMESPACE__ . '\update_archive_title', 10, 3 );
 add_filter( 'render_block_wporg/language-suggest', __NAMESPACE__ . '\filter_language_suggest_block' );
+add_filter( 'render_block_core/site-title', __NAMESPACE__ . '\update_site_title' );
 
 /**
  * Update the query total label to reflect "patterns" found.
@@ -394,4 +395,17 @@ function filter_language_suggest_block( $block_content ) {
 	}
 
 	return $block_content;
+}
+
+/**
+ * Update the archive title for all filter views.
+ *
+ * @param string $block_content The block content.
+ */
+function update_site_title( $block_content ) {
+	return str_replace(
+		get_bloginfo( 'name' ),
+		__( 'Themes', 'wporg-themes' ),
+		$block_content
+	);
 }

@@ -37,9 +37,7 @@ $description = sprintf(
 	<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"bottom"}} -->
 	<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
 	
-		<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"50px","fontStyle":"normal","fontWeight":"400","lineHeight":"1.2"}},"fontFamily":"eb-garamond"} -->
-		<h1 class="wp-block-heading has-eb-garamond-font-family" style="font-size:50px;font-style:normal;font-weight:400;line-height:1.2"><?php esc_html_e( 'Themes', 'wporg-themes' ); ?></h1>
-		<!-- /wp:heading -->
+		<!-- wp:site-title {"level":1,"isLink":false,"style":{"typography":{"fontSize":"50px","lineHeight":"1.2"}}} /-->
 
 		<!-- wp:paragraph {"style":{"typography":{"lineHeight":"2.3"}},"textColor":"white"} -->
 		<p class="has-white-color has-text-color" style="line-height:2.3"><?php echo esc_html( $description ); ?></p>
