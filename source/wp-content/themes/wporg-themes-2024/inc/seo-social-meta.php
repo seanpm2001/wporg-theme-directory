@@ -181,6 +181,8 @@ function get_archive_title() {
 		$title = __( 'Recently updated themes', 'wporg-themes' );
 	} else if ( 'favorites' === $current_browse ) {
 		$title = __( 'My favorites', 'wporg-themes' );
+	} else if ( is_page() ) {
+		$title = get_the_title();
 	} else {
 		$title = __( 'All themes', 'wporg-themes' );
 	}
