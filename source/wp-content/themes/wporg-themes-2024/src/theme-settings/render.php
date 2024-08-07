@@ -18,7 +18,7 @@ if ( has_term( 'commercial', 'theme_business_model', $theme_post ) ) {
 }
 
 // Not community/commercial, or the user is not an owner/admin.
-if ( ! $model_type || ! current_user_can( 'edit_post', $theme_post->ID ) ) {
+if ( ! $model_type || ! current_user_can( 'theme_configure_categorization_options', $theme_post ) ) {
 	return;
 }
 
